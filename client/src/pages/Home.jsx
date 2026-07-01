@@ -26,7 +26,11 @@ const Home = () => {
             <Link to="/contact" className="btn btn-secondary">
               Contact Me <Mail size={18} />
             </Link>
-            <a href="#" className="btn btn-outline" onClick={(e) => { e.preventDefault(); alert("CV download is simulated! You can upload your CV here later."); }}>
+            <a
+              href="/Ratanaksombo CV.pdf"
+              download="Ratanaksombo CV.pdf"
+              className="btn btn-outline"
+            >
               Download CV <Download size={18} />
             </a>
           </div>

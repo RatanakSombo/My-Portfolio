@@ -16,8 +16,7 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo / Brand Name */}
         <Link to="/" className="nav-logo" onClick={() => setIsOpen(false)}>
-          <Code className="logo-icon" size={28} />
-          <span>Sombo.Dev</span>
+          <span>Sombo</span>
         </Link>
 
         {/* Desktop Menu links (Hidden on mobile screens) */}
