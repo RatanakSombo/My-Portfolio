@@ -191,5 +191,5 @@ node seed.js
 ## 16. Author Information
 *   **Name:** Chhoeun Ratanaksombo
 *   **Student ID:** rc6025010072
-*   **University:** Norton University
+*   **University:** Camtech University
 *   **Major:** Software Engineering
