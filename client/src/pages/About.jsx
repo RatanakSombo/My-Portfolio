@@ -13,7 +13,7 @@ const About = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch education from Node/Express API
         const eduResponse = await fetch('http://localhost:5000/api/education');
         if (!eduResponse.ok) {
@@ -54,23 +54,23 @@ const About = () => {
         <div className="card about-bio-card">
           <h2>Who I Am</h2>
           <p>
-            I am a Software Engineering student currently pursuing my Bachelor's degree at <strong>Norton University</strong>. 
-            My primary focus is on web application development and software architecture. I enjoy building things that solve 
+            I am a Software Engineering student currently pursuing my Bachelor's degree at <strong>Camtech University</strong>.
+            My primary focus is on web application development and software architecture. I enjoy building things that solve
             real-world challenges and improve daily life efficiency.
           </p>
           <p>
-            With a solid foundation in modern JavaScript, React, Node.js, and database design, I constantly seek out new challenges 
-            to stretch my technical abilities. I am highly motivated, detail-oriented, and ready to learn and grow in a professional 
+            With a solid foundation in modern JavaScript, React, Node.js, and database design, I constantly seek out new challenges
+            to stretch my technical abilities. I am highly motivated, detail-oriented, and ready to learn and grow in a professional
             environment.
           </p>
 
           <div className="strengths-section">
             <h3>My Core Strengths</h3>
             <ul className="strengths-list">
-              <li>💡 Problem Solving & Logic</li>
-              <li>🤝 Collaboration & Teamwork</li>
-              <li>🚀 Fast Learner of New Tech</li>
-              <li>📈 Strong Work Ethic</li>
+              <li> Problem Solving & Logic</li>
+              <li> Collaboration & Teamwork</li>
+              <li> Fast Learner of New Tech</li>
+              <li>Strong Work Ethic</li>
             </ul>
           </div>
         </div>

@@ -63,7 +63,7 @@ const Contact = () => {
 
       // Success
       setSuccessMsg(responseData.message || 'Thank you! Your message has been sent successfully.');
-      
+
       // Clear the form fields
       setFormData({
         name: '',
@@ -110,7 +110,15 @@ const Contact = () => {
             <Phone className="info-card-icon" size={28} />
             <div>
               <h3>Phone Number</h3>
-              <p>+855 (0) 12 345 678</p>
+              <p>+855 (0) 61 277 600</p>
+            </div>
+          </div>
+
+          <div className="card info-card">
+            <Send className="info-card-icon" size={28} />
+            <div>
+              <h3>Telegram</h3>
+              <p><a href="https://t.me/ratanakSombo" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: '600' }}>@ratanaksombo</a></p>
             </div>
           </div>
         </div>
@@ -118,7 +126,7 @@ const Contact = () => {
         {/* Right Side: The Contact Form */}
         <div className="card contact-form-card">
           <h2>Send a Message</h2>
-          
+
           {/* Show Success Notification */}
           {successMsg && (
             <div className="success-box">
@@ -133,58 +141,58 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
               <label htmlFor="name">Full Name *</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={formData.name} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter your full name"
-                required 
+                required
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="email">Email Address *</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={formData.email} 
-                onChange={handleChange} 
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
-                required 
+                required
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="subject">Subject *</label>
-              <input 
-                type="text" 
-                id="subject" 
-                name="subject" 
-                value={formData.subject} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
                 placeholder="What is this regarding?"
-                required 
+                required
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="message">Message *</label>
-              <textarea 
-                id="message" 
-                name="message" 
+              <textarea
+                id="message"
+                name="message"
                 rows="5"
-                value={formData.message} 
-                onChange={handleChange} 
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Write your message here..."
-                required 
+                required
               ></textarea>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary btn-submit"
               disabled={loading}
             >

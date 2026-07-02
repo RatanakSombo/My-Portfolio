@@ -53,7 +53,7 @@ const Projects = () => {
       {!loading && !error && (
         <div className="projects-grid">
           {projects.length === 0 ? (
-            <p className="no-data">No projects found. Add projects via the Admin dashboard!</p>
+            <p className="no-data">No projects found.</p>
           ) : (
             projects.map((project) => (
               <div key={project._id} className="card project-card">

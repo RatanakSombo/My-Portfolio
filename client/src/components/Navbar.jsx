@@ -46,11 +46,6 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/admin" className="admin-link">
-              Admin
-            </NavLink>
-          </li>
         </ul>
 
         {/* Hamburger Icon button for Mobile Menu */}
@@ -76,9 +71,6 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/contact" className="mobile-link" onClick={toggleMenu}>Contact</Link>
-          </li>
-          <li>
-            <Link to="/admin" className="mobile-link admin-mobile" onClick={toggleMenu}>Admin Dashboard</Link>
           </li>
         </ul>
       )}
