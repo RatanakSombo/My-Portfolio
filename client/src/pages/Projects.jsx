@@ -14,7 +14,7 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch('https://dbje835narh8b.cloudfront.net/api/projects');
         if (!response.ok) {
           throw new Error('Failed to retrieve projects list');
         }

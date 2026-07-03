@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo / Brand Name */}
         <Link to="/" className="nav-logo" onClick={() => setIsOpen(false)}>
-          <span>Sombo</span>
+          <span>Sombo Portfolio</span>
         </Link>
 
         {/* Desktop Menu links (Hidden on mobile screens) */}
@@ -46,6 +46,11 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/admin" className="admin-link">
+              Admin
+            </NavLink>
+          </li>
         </ul>
 
         {/* Hamburger Icon button for Mobile Menu */}
@@ -71,6 +76,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/contact" className="mobile-link" onClick={toggleMenu}>Contact</Link>
+          </li>
+          <li>
+            <Link to="/admin" className="mobile-link admin-mobile" onClick={toggleMenu}>Admin Dashboard</Link>
           </li>
         </ul>
       )}

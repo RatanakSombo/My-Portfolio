@@ -45,3 +45,17 @@ export const getMessages = async (req, res) => {
     res.status(500).json({ message: 'Failed to load messages', error: error.message });
   }
 };
+
+// 3. Delete a contact message (DELETE)
+export const deleteMessage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedMessage = await Message.findByIdAndDelete(id);
+    if (!deletedMessage) {
+      return res.status(404).json({ message: 'Message not found to delete' });
+    }
+    res.status(200).json({ message: 'Message successfully deleted' });
+  } catch (error) {
+    res.status(500).json({ message: 'Delete failed', error: error.message });
+  }
+};

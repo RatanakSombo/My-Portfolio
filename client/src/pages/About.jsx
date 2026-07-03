@@ -15,7 +15,7 @@ const About = () => {
         setLoading(true);
 
         // Fetch education from Node/Express API
-        const eduResponse = await fetch('http://localhost:5000/api/education');
+        const eduResponse = await fetch('https://dbje835narh8b.cloudfront.net/api/education');
         if (!eduResponse.ok) {
           throw new Error('Failed to fetch education records');
         }
@@ -23,7 +23,7 @@ const About = () => {
         setEducation(eduData);
 
         // Fetch experience from Node/Express API
-        const expResponse = await fetch('http://localhost:5000/api/experience');
+        const expResponse = await fetch('https://dbje835narh8b.cloudfront.net/api/experience');
         if (!expResponse.ok) {
           throw new Error('Failed to fetch experience records');
         }

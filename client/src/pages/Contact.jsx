@@ -47,7 +47,7 @@ const Contact = () => {
     try {
       setLoading(true);
 
-      const response = await fetch('http://localhost:5000/api/messages', {
+      const response = await fetch('https://dbje835narh8b.cloudfront.net/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

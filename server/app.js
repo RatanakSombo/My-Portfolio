@@ -11,7 +11,10 @@ import experienceRoutes from './routes/experienceRoutes.js';
 const app = express();
 
 // Middleware configuration
-app.use(cors()); // Allows the React frontend to make requests to this backend API
+app.use(cors({
+  origin: '*', // Allow all origins (safe for a public portfolio API)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
 app.use(express.json()); // Allows the API to parse and read JSON request data
 
 // Mount Routes
