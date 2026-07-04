@@ -12,6 +12,9 @@ const Admin = () => {
   
   // Auth state
   const [adminKey, setAdminKey] = useState(localStorage.getItem('adminKey') || '');
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('adminKey'));
+  const [loginKey, setLoginKey] = useState('');
+  const [loginError, setLoginError] = useState('');
   
   // Form states for creating / editing projects
   const [isEditing, setIsEditing] = useState(false);
@@ -37,11 +40,27 @@ const Admin = () => {
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Handle Admin Key Change
-  const handleKeyChange = (e) => {
-    const value = e.target.value;
-    setAdminKey(value);
-    localStorage.setItem('adminKey', value); // Save it locally for user convenience
+  // Handle login form submission
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!loginKey.trim()) {
+      setLoginError('Please enter the admin secret key.');
+      return;
+    }
+    setLoginError('');
+    setAdminKey(loginKey.trim());
+    localStorage.setItem('adminKey', loginKey.trim());
+    setIsAuthenticated(true);
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    setAdminKey('');
+    setLoginKey('');
+    localStorage.removeItem('adminKey');
+    setIsAuthenticated(false);
+    setProjects([]);
+    setMessages([]);
   };
 
   // Fetch projects and messages
@@ -245,14 +264,67 @@ const Admin = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Login Gate: show login screen if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="admin-page fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
+        <div className="card" style={{ maxWidth: '440px', width: '100%', padding: '40px 32px', textAlign: 'center' }}>
+          <div style={{ marginBottom: '24px' }}>
+            <div style={{ 
+              width: '64px', height: '64px', borderRadius: '50%', 
+              background: 'linear-gradient(135deg, var(--primary), var(--accent))', 
+              display: 'flex', alignItems: 'center', justifyContent: 'center', 
+              margin: '0 auto 16px'
+            }}>
+              <AlertTriangle size={28} color="#fff" />
+            </div>
+            <h2 style={{ marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>Admin Access</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+              Enter the secret key to access the administration panel.
+            </p>
+          </div>
+          
+          {loginError && <div className="error-box" style={{ marginBottom: '16px' }}>{loginError}</div>}
+          
+          <form onSubmit={handleLogin}>
+            <div className="form-group" style={{ textAlign: 'left' }}>
+              <label htmlFor="loginKeyInput" style={{ fontWeight: '600' }}>Secret Key</label>
+              <input 
+                type="password" 
+                id="loginKeyInput"
+                value={loginKey}
+                onChange={(e) => setLoginKey(e.target.value)}
+                placeholder="Enter admin secret key"
+                autoFocus
+                style={{ marginTop: '6px' }}
+              />
+            </div>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '8px', padding: '12px' }}>
+              Unlock Dashboard
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-page fade-in">
-      <div className="page-header">
-        <h1>Administration Panel</h1>
-        <p className="subtitle">Manage project data (CRUD) and view messages received from visitors.</p>
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+        <div>
+          <h1>Administration Panel</h1>
+          <p className="subtitle">Manage project data (CRUD) and view messages received from visitors.</p>
+        </div>
+        <button 
+          className="btn btn-outline" 
+          onClick={handleLogout}
+          style={{ padding: '8px 20px', fontSize: '0.85rem' }}
+        >
+          <X size={16} /> Logout
+        </button>
       </div>
 
-      {/* Tab Selectors */}
+      {/* Tabs */}
       <div className="admin-tabs">
         <button 
           className={`tab-btn ${activeTab === 'projects' ? 'active' : ''}`}
@@ -266,26 +338,6 @@ const Admin = () => {
         >
           <MessageSquare size={18} /> View Messages ({messages.length})
         </button>
-      </div>
-
-      {/* Admin Secret Key Input Section */}
-      <div className="card admin-auth-section" style={{ marginBottom: '24px', padding: '20px' }}>
-        <div className="form-group" style={{ margin: 0 }}>
-          <label htmlFor="adminKeyInput" style={{ fontWeight: '700', color: 'var(--accent)' }}>
-            Admin Authorization Secret Key:
-          </label>
-          <input 
-            type="password" 
-            id="adminKeyInput"
-            value={adminKey} 
-            onChange={handleKeyChange} 
-            placeholder="Enter server ADMIN_SECRET_KEY to enable additions/edits/deletions and messages loading"
-            style={{ marginTop: '8px', maxWidth: '500px' }}
-          />
-          <small style={{ color: 'var(--text-muted)', display: 'block', marginTop: '6px' }}>
-            Tip: If MONGODB_URI is configured but no ADMIN_SECRET_KEY is defined in .env, write access is unlocked by default.
-          </small>
-        </div>
       </div>
 
       {/* Notifications */}

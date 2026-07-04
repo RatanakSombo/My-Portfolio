@@ -1,55 +1,102 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, Code } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-  // state variable to manage whether the mobile menu is open or closed
+  // State for mobile menu toggle
   const [isOpen, setIsOpen] = useState(false);
+  // State for tracking which section is currently in the viewport
+  const [activeSection, setActiveSection] = useState('home');
+  // Detect if we are on the Admin page (separate route)
+  const location = useLocation();
+  const isAdminPage = location.pathname === '/admin';
 
-  // function to toggle the mobile menu state
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // Smooth scroll to a section and close mobile menu
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    // If we're on the admin page, navigate home first then scroll
+    if (isAdminPage) {
+      window.location.href = '/#' + sectionId;
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // IntersectionObserver to highlight the active navbar link as user scrolls
+  useEffect(() => {
+    if (isAdminPage) return; // Don't observe on admin page
+
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
+    const observers = [];
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, [isAdminPage]);
+
+  // Navigation items for the portfolio sections
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About Me' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' },
+  ];
 
   return (
     <nav className="navbar">
       <div className="nav-container">
         {/* Logo / Brand Name */}
-        <Link to="/" className="nav-logo" onClick={() => setIsOpen(false)}>
+        <a href="#home" className="nav-logo" onClick={(e) => scrollToSection(e, 'home')}>
           <span>Sombo Portfolio</span>
-        </Link>
+        </a>
 
-        {/* Desktop Menu links (Hidden on mobile screens) */}
+        {/* Desktop Menu links */}
         <ul className="nav-links">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={`nav-link ${!isAdminPage && activeSection === item.id ? 'active' : ''}`}
+                onClick={(e) => scrollToSection(e, item.id)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
           <li>
-            <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              About Me
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/skills" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Skills
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/projects" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Projects
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin" className="admin-link">
+            <Link to="/admin" className={`admin-link ${isAdminPage ? 'active' : ''}`}>
               Admin
-            </NavLink>
+            </Link>
           </li>
         </ul>
 
@@ -62,21 +109,17 @@ const Navbar = () => {
       {/* Mobile Links List (Only visible when isOpen is true) */}
       {isOpen && (
         <ul className="mobile-nav-links">
-          <li>
-            <Link to="/" className="mobile-link" onClick={toggleMenu}>Home</Link>
-          </li>
-          <li>
-            <Link to="/about" className="mobile-link" onClick={toggleMenu}>About Me</Link>
-          </li>
-          <li>
-            <Link to="/skills" className="mobile-link" onClick={toggleMenu}>Skills</Link>
-          </li>
-          <li>
-            <Link to="/projects" className="mobile-link" onClick={toggleMenu}>Projects</Link>
-          </li>
-          <li>
-            <Link to="/contact" className="mobile-link" onClick={toggleMenu}>Contact</Link>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={`mobile-link ${!isAdminPage && activeSection === item.id ? 'active' : ''}`}
+                onClick={(e) => scrollToSection(e, item.id)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
           <li>
             <Link to="/admin" className="mobile-link admin-mobile" onClick={toggleMenu}>Admin Dashboard</Link>
           </li>

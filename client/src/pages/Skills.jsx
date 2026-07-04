@@ -64,7 +64,7 @@ const Skills = () => {
         <div className="skills-grid">
           {categories.map((category) => {
             const categorySkills = getSkillsByCategory(category);
-            
+
             // If we don't have any skills under this category, don't show the card
             if (categorySkills.length === 0) return null;
 
@@ -74,7 +74,7 @@ const Skills = () => {
                   <Cpu className="skill-card-icon" size={24} />
                   <h2>{category}</h2>
                 </div>
-                
+
                 <div className="skill-items-list">
                   {categorySkills.map((skill) => (
                     <div key={skill._id} className="skill-progress-block">
@@ -82,11 +82,11 @@ const Skills = () => {
                         <span className="skill-name">{skill.name}</span>
                         <span className="skill-level">{skill.level}%</span>
                       </div>
-                      
+
                       {/* Visual progress bar */}
                       <div className="progress-bar-bg">
-                        <div 
-                          className="progress-bar-fill" 
+                        <div
+                          className="progress-bar-fill"
                           style={{ width: `${skill.level}%` }}
                         ></div>
                       </div>

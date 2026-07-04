@@ -10,6 +10,29 @@ import Contact from './pages/Contact.jsx';
 import Admin from './pages/Admin.jsx';
 import './App.css';
 
+// Single-page portfolio: all sections rendered vertically on one page
+const PortfolioPage = () => {
+  return (
+    <>
+      <section id="home" className="portfolio-section">
+        <Home />
+      </section>
+      <section id="about" className="portfolio-section">
+        <About />
+      </section>
+      <section id="skills" className="portfolio-section">
+        <Skills />
+      </section>
+      <section id="projects" className="portfolio-section">
+        <Projects />
+      </section>
+      <section id="contact" className="portfolio-section">
+        <Contact />
+      </section>
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -19,14 +42,10 @@ function App() {
         {/* Navigation Bar (Shared across all pages) */}
         <Navbar />
         
-        {/* Main Content Area: React Router will display components here based on the URL */}
+        {/* Main Content Area */}
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<PortfolioPage />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>

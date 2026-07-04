@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 
 const Home = () => {
@@ -13,19 +12,19 @@ const Home = () => {
           <h2 className="hero-title">Software Engineering Student</h2>
 
           <p className="hero-intro">
-            Hello! I am a passionate software engineering student at Camtech University.
+            Hello! I am a passionate software engineering student at <strong>Camtech University</strong>.
             I love learning modern technologies and building clean, responsive full-stack applications.
             Explore my website to see my skills, projects, and educational journey!
           </p>
 
           {/* Call to Actions (CTAs) */}
           <div className="hero-ctas">
-            <Link to="/projects" className="btn btn-primary">
+            <a href="#projects" className="btn btn-primary">
               View My Projects <ArrowRight size={18} />
-            </Link>
-            <Link to="/contact" className="btn btn-secondary">
+            </a>
+            <a href="#contact" className="btn btn-secondary">
               Contact Me <Mail size={18} />
-            </Link>
+            </a>
             <a
               href="/Ratanaksombo CV.pdf"
               download="Ratanaksombo CV.pdf"

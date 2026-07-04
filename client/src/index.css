@@ -86,6 +86,11 @@ ul {
   /* Space top for fixed navbar */
 }
 
+/* Scroll offset for anchor links (prevents navbar overlap) */
+.portfolio-section {
+  scroll-margin-top: 80px;
+}
+
 /* 5. Typography */
 h1,
 h2,

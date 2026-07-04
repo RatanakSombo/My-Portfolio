@@ -29,7 +29,7 @@ const sampleProjects = [
       "Gym businesses need a structured system to manage members, subscriptions, and payments efficiently — without relying on manual paper records or spreadsheets.",
     technologies: ["Java", "OOP", "SQL", "PostgreSQL"],
     imageUrl:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop",
+      "https://i.postimg.cc/rpG5mYmj/GYM-manangment.jpg",
     githubUrl: "https://github.com/RatanakSombo/Object_Oriented_Concept",
     liveUrl: "",
     contribution:
@@ -49,14 +49,34 @@ const sampleProjects = [
       "Tons of unsold food go to waste daily because merchants have no efficient way to reach buyers at the last minute. Consumers also lack a centralized platform to discover discounted surplus food nearby.",
     technologies: ["Node.js", "Express", "PostgreSQL", "JWT", "HTML5", "CSS3", "React Native"],
     imageUrl:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format&fit=crop",
+      "https://i.postimg.cc/ZKg8Dd2T/Save-Eat.png",
     githubUrl: "https://github.com/developtp/SaveEat",
+    liveUrl: "",
     contribution:
       "Architected the full authentication system using JWT access tokens with HttpOnly refresh cookies and CSRF header protection. Built the vendor dashboard with full CRUD operations for food listing management, and designed the responsive landing page from scratch using vanilla CSS Grid and Flexbox.",
     challenges:
       "Designing a secure, stateless authentication flow that defends against both XSS and CSRF attacks simultaneously — using a hybrid cookie/in-memory token model with automatic token rotation and account lockout on brute-force attempts.",
     lessonsLearned:
       "Deepened understanding of real-world web security architecture (JWT rotation, CSRF mitigation, bcrypt hashing). Also learned how to plan a phased project across two academic terms, aligning a web backend in Term 2 to serve a mobile app client in Term 3.",
+    featured: true,
+  },
+
+  {
+    title: "SongKherm",
+    description:
+      "A web application designed to improve Khmer text accessibility for visually impaired individuals by utilizing Optical Character Recognition (OCR) to extract text and Text-to-Speech (TTS) technology to read it aloud.",
+    problem:
+      "Visually impaired people rely heavily on text-scanning translation devices to read. However, standard solutions frequently fail to support or accurately process the Khmer language, resulting in mispronunciations and incorrect translations that hinder independent learning and accessibility.",
+    technologies: ["React", "Node.js", "Tesseract.js", "Web Speech API", "CSS3"],
+    imageUrl: "https://i.postimg.cc/GmW4vPNk/500-x-500-px-logo.png",
+    githubUrl: "",
+    liveUrl: "https://ocr-for-impaired-user.vercel.app/",
+    contribution:
+      "Conducted extensive user research and field interviews with visually impaired individuals to identify accessibility gaps. Developed the system architecture integrating client-side Khmer OCR text extraction with web speech rendering layers to deliver accurate real-time audio playback.",
+    challenges:
+      "Optimizing Khmer character recognition accuracy due to complex glyph structures, vowels, and diacritics. Successfully fine-tuned the OCR text extraction layer to handle printed layouts and resolved Khmer syllable spacing gaps to improve voice synthesizer pronunciation quality.",
+    lessonsLearned:
+      "Gained deep insights into accessibility design guidelines (WCAG) and voice user interface design. Learned how to implement third-party OCR engines in JavaScript and optimize client-side speech synthesis workflows for local Khmer language packs.",
     featured: true,
   },
 ];

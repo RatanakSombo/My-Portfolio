@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, X, Award } from 'lucide-react';
 import { Github } from '../components/Icons';
 
@@ -99,8 +100,8 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Project Details Modal (Popup) */}
-      {selectedProject && (
+      {/* Project Details Modal (Popup) - Rendered via Portal to avoid stacking context issues */}
+      {selectedProject && createPortal(
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             {/* Close Button */}
@@ -174,7 +175,8 @@ const Projects = () => {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

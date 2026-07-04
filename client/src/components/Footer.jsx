@@ -1,5 +1,4 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 
 const Footer = () => {
@@ -10,10 +9,10 @@ const Footer = () => {
       <div className="footer-container">
         {/* Author details */}
         <p className="footer-text">
-          &copy; {currentYear} <strong>Chhoeun Ratanaksombo</strong>. All rights reserved.
+          &copy; {currentYear} <strong>Chhoeun Ratanaksombo</strong>
         </p>
         <p className="footer-subtext">
-          Web Development Final Assessment | Student ID: rc6025010072
+          Camtech University | Student ID: rc6025010072
         </p>
 
         {/* Social Links */}
@@ -35,13 +34,6 @@ const Footer = () => {
             className="footer-icon-link"
           >
             <Linkedin size={22} />
-          </a>
-          <a
-            href="mailto:rc6025010072@student.university.edu"
-            aria-label="Email Contact"
-            className="footer-icon-link"
-          >
-            <Mail size={22} />
           </a>
         </div>
       </div>
