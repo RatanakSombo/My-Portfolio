@@ -40,7 +40,7 @@ const Home = () => {
           <div className="avatar-frame">
             {/* We will use a professional placeholder illustration */}
             <img
-              src="/photo_2026-07-01_18-44-49.jpg"
+              src="https://i.postimg.cc/zvwfw4sX/Sombo.jpg"
               alt="Chhoeun Ratanaksombo Avatar"
               className="avatar-image"
             />
