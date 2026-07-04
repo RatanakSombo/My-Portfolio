@@ -22,3 +22,7 @@ Thumbs.db
 
 # Private keys
 *.pem
+
+# Study guides & Private notes
+STUDY_GUIDE.md
+
