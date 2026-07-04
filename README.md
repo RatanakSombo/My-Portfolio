@@ -193,3 +193,65 @@ node seed.js
 *   **Student ID:** rc6025010072
 *   **University:** Camtech University
 *   **Major:** Software Engineering
+
+---
+
+## 17. AWS Deployment Guide
+
+This section outlines how to deploy updates to your live site hosted on AWS.
+
+### A. Frontend Deployment (AWS S3)
+
+Your React frontend is built locally and synced to an S3 bucket which is distributed globally via CloudFront.
+
+1. **Configure AWS CLI (First-time setup only):**
+   If your AWS credentials are not configured in your terminal, run:
+   ```bash
+   aws configure
+   ```
+   Provide your **AWS Access Key ID** and **AWS Secret Access Key** when prompted.
+
+2. **Build the production assets:**
+   Open a terminal in the project root and navigate to the `client` directory to build:
+   ```bash
+   cd client
+   npm run build
+   ```
+
+3. **Deploy to S3:**
+   Sync the compiled files from the `client/dist` directory to your S3 bucket:
+   ```bash
+   aws s3 sync dist s3://ratanak-portfolio-frontend --delete
+   ```
+
+---
+
+### B. Backend Deployment (AWS EC2 & PM2)
+
+Your Node/Express backend is running on an AWS EC2 instance managed by PM2.
+
+1. **Verify your local private key permissions:**
+   For SSH/SCP to succeed on Windows, the key file `portfolio-key.pem` must only be readable by your user account:
+   ```powershell
+   icacls "portfolio-key.pem" /reset
+   icacls "portfolio-key.pem" /inheritance:r /grant "$($env:USERNAME):R"
+   ```
+
+2. **Copy the backend code to the EC2 server:**
+   Copy the backend directory files (excluding `node_modules` and local environment files) using `scp`:
+   ```bash
+   scp -i "portfolio-key.pem" -r server/controllers server/models server/routes server/middleware server/config server/app.js server/server.js server/seed.js ubuntu@13.213.224.44:/home/ubuntu/portfolio-server/
+   ```
+
+3. **Restart the API service:**
+   SSH into the EC2 instance and restart the PM2 backend process to load your new changes:
+   ```bash
+   ssh -i "portfolio-key.pem" ubuntu@13.213.224.44 "pm2 restart portfolio-api"
+   ```
+
+4. **Verify backend log status:**
+   Check the live logs to ensure the server starts and connects to your MongoDB cluster correctly:
+   ```bash
+   ssh -i "portfolio-key.pem" ubuntu@13.213.224.44 "tail -n 20 ~/.pm2/logs/portfolio-api-out.log"
+   ```
+
