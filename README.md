@@ -165,14 +165,13 @@ node seed.js
 ---
 
 ## 12. Live Website URL
-*(To be populated after AWS deployment)*  
-*Frontend URL:* [To be deployed]  
-*Backend URL:* [To be deployed]  
+*   **Frontend URL:** [https://d3tbv08no242f2.cloudfront.net](https://d3tbv08no242f2.cloudfront.net)  
+*   **Backend URL:** [https://dbje835narh8b.cloudfront.net](https://dbje835narh8b.cloudfront.net)  
 
 ---
 
 ## 13. GitHub Repository URL
-*URL:* [To be populated after committing code to Git]
+*   **Repository URL:** [https://github.com/RatanakSombo/My-Portfolio](https://github.com/RatanakSombo/My-Portfolio)
 
 ---
 
